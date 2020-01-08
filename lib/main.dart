@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/MyAnimatedOpacity.dart';
 import 'package:flutter_practice/MyAnimatorContinaer.dart';
 import 'package:flutter_practice/MyDrawer.dart';
+import 'package:flutter_practice/MySnackBar.dart';
 
 void main() => runApp(MyApp());
 
@@ -60,7 +61,13 @@ class _HomeState extends State<Home> {
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder:  (context) => MyDrawer()));
           },
-        )
+        ),
+        ListTile (
+          title: Text('SnackBar'),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder:  (context) => MySnackBar()));
+          },
+        ),
       ],
     );
   }
