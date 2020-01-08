@@ -4,6 +4,7 @@ import 'package:flutter_practice/MyAnimatorContinaer.dart';
 import 'package:flutter_practice/MyDrawer.dart';
 import 'package:flutter_practice/MyOrientation.dart';
 import 'package:flutter_practice/MySnackBar.dart';
+import 'package:flutter_practice/MyTabController.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        brightness: Brightness.dark, //다크모드
         primarySwatch: Colors.blue,
+        accentColor: Colors.yellow
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -73,6 +76,12 @@ class _HomeState extends State<Home> {
           title: Text('Orientation'),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder:  (context) => MyOrientation()));
+          },
+        ),
+        ListTile (
+          title: Text('Tab Controller'),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder:  (context) => MyTabController()));
           },
         ),
       ],
