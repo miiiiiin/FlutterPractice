@@ -5,6 +5,7 @@ import 'package:flutter_practice/MyDrawer.dart';
 import 'package:flutter_practice/MyFormValidation.dart';
 import 'package:flutter_practice/MyMethodChannel.dart';
 import 'package:flutter_practice/MyOrientation.dart';
+import 'package:flutter_practice/MyPageView.dart';
 import 'package:flutter_practice/MySnackBar.dart';
 import 'package:flutter_practice/MySwipeToDismiss.dart';
 import 'package:flutter_practice/MyTabController.dart';
@@ -103,6 +104,12 @@ class _HomeState extends State<Home> {
           title: Text('Method Channel'),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder:  (context) => MyMethodChannel()));
+          },
+        ),
+        ListTile (
+          title: Text('Page View'),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder:  (context) => MyPageView()));
           },
         ),
       ],
