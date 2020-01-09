@@ -3,6 +3,7 @@ import 'package:flutter_practice/MyAnimatedOpacity.dart';
 import 'package:flutter_practice/MyAnimatorContinaer.dart';
 import 'package:flutter_practice/MyDrawer.dart';
 import 'package:flutter_practice/MyFormValidation.dart';
+import 'package:flutter_practice/MyMethodChannel.dart';
 import 'package:flutter_practice/MyOrientation.dart';
 import 'package:flutter_practice/MySnackBar.dart';
 import 'package:flutter_practice/MySwipeToDismiss.dart';
@@ -96,6 +97,12 @@ class _HomeState extends State<Home> {
           title: Text('Swipe'),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder:  (context) => MySwipeToDismiss()));
+          },
+        ),
+        ListTile (
+          title: Text('Method Channel'),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder:  (context) => MyMethodChannel()));
           },
         ),
       ],
