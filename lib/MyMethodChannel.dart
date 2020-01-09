@@ -15,8 +15,7 @@ class _MyMethodChannelState extends State<MyMethodChannel> {
     String value;
 
     try {
-      value = await platform.invokeMethod(
-          'getValue'); //값을 얻게 하기 위함, 비동기로 동작하는 future 때문에 await
+      value = await platform.invokeMethod('getValue'); //값을 얻게 하기 위함, 비동기로 동작하는 future 때문에 await
     } on PlatformException catch  (e) {
       value = '네이티브 코드 실행 에러 : ${e.message}';
     }
