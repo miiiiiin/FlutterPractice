@@ -42,7 +42,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           if (snapshot.hasData) {
             return Text('${snapshot.data}', style: TextStyle(fontSize: 30),);
           } else {
-            return CircularProgressIndicator();
+            return CircularProgressIndicator ();
           }
         }),
       ),
