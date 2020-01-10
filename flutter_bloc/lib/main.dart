@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'bloc/counter_bloc.dart';
+
 void main() => runApp(MyApp());
+
+final counterBloc = CounterBloc(); //전체 앱에서 bloc 사용 가능
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -9,18 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ,
+      home: MyStatefulWidget(),
     );
   }
 }
@@ -41,7 +36,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text('Sample code'),
       ),
       body: Center(
-        child: Text('you have pressed the button $_count times.'),
+        child: StreamBuilder<int>(
+            stream: counterBloc.count$, //이 스트림으로 부터 값을 받을 예정(어디서 받을지 설정 가)
+            builder: (context, snapshot) { //context와 snashot이라는 두개의 파라미터를 받음
+          if (snapshot.hasData) {
+            return Text('${snapshot.data}', style: TextStyle(fontSize: 30),);
+          } else {
+            return CircularProgressIndicator();
+          }
+        }),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -50,7 +53,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
-          _count++;
+          counterBloc.addCounter(); //counter bloc의 함수 실행
         }),
         tooltip: 'increment counter',
         child: Icon(Icons.add),
