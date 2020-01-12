@@ -41,7 +41,7 @@ class _MainState extends State<Main> {
 //  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
     return Scaffold(
         body: Center(
       child: StreamBuilder<AirResult>(
@@ -79,17 +79,17 @@ class _MainState extends State<Main> {
                       children: <Widget>[
                         Text('얼굴사진'),
                         Text(
-                          '${_result.data.current.pollution.aqicn}',
+                          '${result.data.current.pollution.aqicn}',
                           style: TextStyle(fontSize: 40),
                         ),
                         Text(
-                          getString(_result),
+                          getString(result),
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
                     ),
                     padding: const EdgeInsets.all(8.0),
-                    color: getColor(_result),
+                    color: getColor(result),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -99,7 +99,7 @@ class _MainState extends State<Main> {
                         Row(
                           children: <Widget>[
                             Image.network(
-                              'https://airvisual.com/images/${_result.data.current.weather.ic}.png',
+                              'https://airvisual.com/images/${result.data.current.weather.ic}.png',
                               width: 32,
                               height: 32,
                             ), //통신 이미지 적용
@@ -129,7 +129,11 @@ class _MainState extends State<Main> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50),
                 color: Colors.orange,
-                onPressed: () {},
+                onPressed: () {
+                  //refresh
+//                  airBloc.fetch(); or
+                    airBloc.refresh();
+                },
                 child: Icon(
                   Icons.refresh,
                   color: Colors.white,

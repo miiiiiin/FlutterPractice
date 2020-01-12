@@ -33,4 +33,10 @@ class AirBloc {
     AirResult result = AirResult.fromJson(json.decode(response.body));
     return result;
   }
+
+  //Refresh 기능
+  void refresh() {
+    print('refresh');
+    fetch();
+  }
 }
