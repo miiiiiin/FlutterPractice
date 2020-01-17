@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cart_bloc/bloc/cart_provider.dart';
 import 'package:flutter_cart_bloc/cart.dart';
 
 import 'bloc/cart_bloc.dart';
@@ -12,12 +13,15 @@ class Catalog extends StatefulWidget {
 
 class _CatalogState extends State<Catalog> {
 
-  List<Item> _itemList = itemList;
+//  List<Item> _itemList = itemList;
+
 
   @override
   Widget build(BuildContext context) {
 
-    final _cartBloc = BlocProvider.of<CartBloc>(context); //상위에서 내려오는 bloc. <CartBloc> 타입 형 설정
+    CartBloc cartbloc = CartProvider.of(context);
+
+//    final _cartBloc = BlocProvider.of<CartBloc>(context); //상위에서 내려오는 bloc. <CartBloc> 타입 형 설정
 
     return Scaffold(
       appBar: AppBar(
@@ -30,19 +34,19 @@ class _CatalogState extends State<Catalog> {
           },
         )],
       ),
-      body: BlocBuilder<CartBloc, List<Item>>(
-        bloc: _cartBloc,
-        builder: (BuildContext context, List state) {
+      body: StreamBuilder(
+        stream: cartbloc.cartList,
+        builder: (context, snapshot) {
           return Center(
             child: ListView(
-              children: _itemList
-                  .map((item) => _buildItem(item, state, _cartBloc))
+              children: cartbloc.itemlist
+                  .map((item) => _buildItem(item, snapshot.data, cartBloc))
                   .toList(),
             ),
           );
-        },
+        }
       ),
-    );
+    )
   }
 
   Widget _buildItem(Item item, List state, CartBloc bloc) { //item 하나씩 받아서 listview에 사용되는 listtile의 패딩값을 리턴
